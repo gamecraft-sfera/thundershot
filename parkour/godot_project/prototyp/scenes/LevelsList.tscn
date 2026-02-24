@@ -1,0 +1,76 @@
+[gd_scene load_steps=25 format=3 uid="uid://d3yo104xfw1br"]
+
+[ext_resource type="Script" uid="uid://b8hmbgyjipt3b" path="res://scenes/levels_list.gd" id="1_icaua"]
+[ext_resource type="PackedScene" uid="uid://bqm1drs3i17qp" path="res://scenes/level_list_button.tscn" id="2_60doi"]
+[ext_resource type="PackedScene" uid="uid://n6lj01e7q6hx" path="res://levels/level1.tscn" id="2_jtpml"]
+[ext_resource type="PackedScene" uid="uid://bcwpfd3hrlp4x" path="res://levels/level_adam.tscn" id="3_gag8u"]
+[ext_resource type="PackedScene" uid="uid://bsds06dmjayr3" path="res://levels/level_anna.tscn" id="4_uds2b"]
+[ext_resource type="PackedScene" uid="uid://bks68irs3lfce" path="res://levels/level_erik.tscn" id="5_j1ikr"]
+[ext_resource type="PackedScene" uid="uid://blsklxy3a5ola" path="res://levels/level_ester.tscn" id="6_je64b"]
+[ext_resource type="PackedScene" uid="uid://pnxvah7vnxhm" path="res://levels/level_filip.tscn" id="7_nddsh"]
+[ext_resource type="PackedScene" uid="uid://bme6bhuw4s1xr" path="res://levels/level_gabriel.tscn" id="8_ce0vw"]
+[ext_resource type="PackedScene" uid="uid://mvchuf4uaybi" path="res://levels/level_matyas.tscn" id="9_rty3i"]
+[ext_resource type="PackedScene" uid="uid://c5g50oo6ajvhn" path="res://levels/level_maya.tscn" id="10_pi7sw"]
+[ext_resource type="PackedScene" uid="uid://cy7dr2hv22ihh" path="res://levels/level_mikolas.tscn" id="11_3vvwa"]
+[ext_resource type="PackedScene" uid="uid://dn286o6ngkeg2" path="res://levels/level_misa.tscn" id="12_ebc16"]
+[ext_resource type="PackedScene" uid="uid://bf4k2iharri0a" path="res://levels/level_misa2.tscn" id="13_pqr8j"]
+[ext_resource type="PackedScene" uid="uid://cdhd3yo6t72mf" path="res://levels/level_natka.tscn" id="14_ucgef"]
+[ext_resource type="PackedScene" uid="uid://cf708hetdw54g" path="res://levels/level_niki.tscn" id="15_bx1s3"]
+[ext_resource type="PackedScene" uid="uid://cnftvayx00r6y" path="res://levels/level_radovan.tscn" id="16_h71nm"]
+[ext_resource type="PackedScene" uid="uid://cvcxjlmjaptqb" path="res://levels/level_ronja.tscn" id="17_altcc"]
+[ext_resource type="PackedScene" uid="uid://w3ygllptgt6n" path="res://levels/level_stepan.tscn" id="18_0dfdn"]
+[ext_resource type="PackedScene" uid="uid://cafvwtdd3afvx" path="res://levels/level_tereza.tscn" id="19_kuy1u"]
+[ext_resource type="PackedScene" uid="uid://flnnq2kuwtbd" path="res://levels/level_terezka.tscn" id="20_r553d"]
+[ext_resource type="PackedScene" uid="uid://dik4lvwq3j8ml" path="res://levels/level_viktor.tscn" id="21_0ogd1"]
+[ext_resource type="PackedScene" uid="uid://vhdmas4e7eag" path="res://levels/level_vitek.tscn" id="22_i6fib"]
+[ext_resource type="PackedScene" uid="uid://dn28wih5b0n0x" path="res://levels/level_tada.tscn" id="23_3yrt1"]
+
+[node name="LevelsList" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_icaua")
+levels = Array[PackedScene]([ExtResource("2_jtpml"), ExtResource("3_gag8u"), ExtResource("4_uds2b"), ExtResource("5_j1ikr"), ExtResource("6_je64b"), ExtResource("7_nddsh"), ExtResource("8_ce0vw"), ExtResource("9_rty3i"), ExtResource("10_pi7sw"), ExtResource("11_3vvwa"), ExtResource("12_ebc16"), ExtResource("13_pqr8j"), ExtResource("14_ucgef"), ExtResource("15_bx1s3"), ExtResource("16_h71nm"), ExtResource("17_altcc"), ExtResource("18_0dfdn"), ExtResource("19_kuy1u"), ExtResource("20_r553d"), ExtResource("21_0ogd1"), ExtResource("22_i6fib"), ExtResource("23_3yrt1")])
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(500, 800)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/CenterContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 20
+
+[node name="LevelListButton" parent="Panel/MarginContainer/CenterContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_60doi")]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/CenterContainer/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "Pan Tau"

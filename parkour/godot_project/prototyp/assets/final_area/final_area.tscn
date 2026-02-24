@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh4em1fbetqpx"]
+
+[ext_resource type="Script" uid="uid://f6gpvgu7od2y" path="res://assets/final_area/final_area.gd" id="1_gw24v"]
+[ext_resource type="PackedScene" uid="uid://ctiglajc3qk0h" path="res://assets/final_area_vfx/skull.tscn" id="2_nhf3i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37vfl"]
+size = Vector3(1.8000001, 3, 1.5)
+
+[node name="FinalArea" type="Area3D"]
+script = ExtResource("1_gw24v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999981, 1, -0.25)
+shape = SubResource("BoxShape3D_37vfl")
+
+[node name="Skull" parent="." instance=ExtResource("2_nhf3i")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.0061014, -0.27677387)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,183 @@
+[gd_scene load_steps=20 format=3 uid="uid://d1rshm33rxi4p"]
+
+[ext_resource type="Script" uid="uid://bs488lmrq4l78" path="res://levels/level.gd" id="1_e3xvy"]
+[ext_resource type="AudioStream" uid="uid://cn7ryin2wpj4i" path="res://assets/music/aggressive-techno-409194.mp3" id="2_its23"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="3_4ypk3"]
+[ext_resource type="AudioStream" uid="uid://du5yc7rb3xamv" path="res://assets/sounds/footsteps/heavy-walking-footsteps-352771.mp3" id="4_htn8k"]
+[ext_resource type="Texture2D" uid="uid://cjjqtc43kqqwd" path="res://assets/skyboxes/Skyboxes/AllSkyFree_Sky_AnotherPlanet_Equirect.png" id="5_nabdf"]
+[ext_resource type="PackedScene" uid="uid://das1pnyceqtam" path="res://assets/components/gothic/slope.tscn" id="6_ays0r"]
+[ext_resource type="PackedScene" uid="uid://dxi5wo3hah8ad" path="res://assets/components/gothic/gik_arch_1_0.tscn" id="7_x0rfs"]
+[ext_resource type="PackedScene" uid="uid://co7gvayamyikg" path="res://assets/components/gothic/wall_009_10.tscn" id="8_mab7l"]
+[ext_resource type="PackedScene" uid="uid://q16aggykdbpd" path="res://assets/components/gothic/statue_2_16.tscn" id="9_4jttj"]
+[ext_resource type="PackedScene" uid="uid://c7i5bx0ckjrow" path="res://assets/components/gothic/gik_corner_stair_1_004_14.tscn" id="10_alwuc"]
+[ext_resource type="PackedScene" uid="uid://bee4ancaucxyb" path="res://assets/components/gothic/gik_long_stair_1_13.tscn" id="11_8fu1w"]
+[ext_resource type="PackedScene" uid="uid://y34svv575w2y" path="res://assets/components/gothic/fence_003_8.tscn" id="12_k1aiw"]
+[ext_resource type="PackedScene" uid="uid://dj3aeqdj51jmj" path="res://assets/components/gothic/slope_007_1.tscn" id="13_t6eka"]
+[ext_resource type="PackedScene" uid="uid://bh4em1fbetqpx" path="res://assets/final_area/final_area.tscn" id="14_nai71"]
+[ext_resource type="PackedScene" uid="uid://cbdwdib2q1mqg" path="res://assets/next_level_portal/next_level_portal.tscn" id="15_s5fym"]
+[ext_resource type="PackedScene" uid="uid://c5g50oo6ajvhn" path="res://levels/level_maya.tscn" id="16_wq8cb"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7c8s"]
+panorama = ExtResource("5_nabdf")
+
+[sub_resource type="Sky" id="Sky_2iust"]
+sky_material = SubResource("PanoramaSkyMaterial_t7c8s")
+
+[sub_resource type="Environment" id="Environment_20rw3"]
+background_mode = 2
+sky = SubResource("Sky_2iust")
+tonemap_mode = 1
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.10583011, 0.2281501, 0.5782634, 1)
+fog_light_energy = 1.48
+fog_sun_scatter = 0.44
+fog_density = 0.053
+fog_sky_affect = 0.249
+
+[node name="main_world" type="Node3D"]
+script = ExtResource("1_e3xvy")
+puzzle_text = "[jim] [kebab]"
+author = "matyas"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_its23")
+
+[node name="Character" parent="." instance=ExtResource("3_4ypk3")]
+unique_name_in_owner = true
+transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, 8.601595, 0.4339733, 8.007505)
+walking_sound = ExtResource("4_htn8k")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_20rw3")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9997015, -0.0035691266, -0.024170076, 0, 0.98927236, -0.14608301, 0.024432179, 0.14603943, 0.988977, 7.303009, 8.67791, 0)
+light_color = Color(0.51115954, 0.55708605, 0.96564955, 1)
+light_energy = 3.14
+shadow_enabled = true
+
+[node name="terrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 19)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.816658, -0.07950759, -7.6226406)
+use_collision = true
+size = Vector3(10, 1, 10.501465)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.657925, -0.60835934, 7.908621)
+use_collision = true
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1559305, -0.5, 14.80481)
+use_collision = true
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.767456, -5.1580687, 8.80481)
+use_collision = true
+size = Vector3(10, 0.001, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(0.98903394, 0, 0, 0, 1, 0, 0, 0, 1, 11.191344, -0.5, 24.80481)
+use_collision = true
+size = Vector3(3.9839478, 1, 5)
+
+[node name="slope" parent="terrain/CSGBox3D4" instance=ExtResource("6_ays0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)
+
+[node name="@Node3D@54082" parent="terrain/CSGBox3D4" instance=ExtResource("6_ays0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.2665663, 0)
+
+[node name="gik_arch_1_0" parent="terrain" instance=ExtResource("7_x0rfs")]
+transform = Transform3D(-1.617212e-08, 0, 0.36997497, 0, 0.36997494, 0, -0.36997497, 0, -1.617212e-08, 12.158288, -0.44400305, -12.340595)
+
+[node name="@Node3D@46278" parent="terrain" instance=ExtResource("7_x0rfs")]
+transform = Transform3D(-0.016770197, -0.010086726, 0.3694503, -0.00046843357, 0.36111045, 0.010319681, -0.36959442, 4.4045131e-10, -0.016776737, 9.015065, -0.31798705, -12.534716)
+
+[node name="wall_009_10" parent="terrain" instance=ExtResource("8_mab7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.544329, 0, 8)
+
+[node name="wall_009_13" parent="terrain" instance=ExtResource("8_mab7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.199806, 0, 22.439983)
+
+[node name="wall_009_12" parent="terrain" instance=ExtResource("8_mab7l")]
+transform = Transform3D(0.33743483, 0, 0, 0, 0.989736, 0, 0, 0, 0.41532356, 21.218702, 2.0315688, 23.570545)
+
+[node name="wall_009_11" parent="terrain" instance=ExtResource("8_mab7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.459091, 1.6310148, 24.910301)
+
+[node name="statue_2_16" parent="terrain" instance=ExtResource("9_4jttj")]
+transform = Transform3D(2.128711, 0, 0, 0, 2.128711, 0, 0, 0, 2.128711, 21.860744, 1, 8)
+
+[node name="gik_corner_stair_1_004_14" parent="terrain" instance=ExtResource("10_alwuc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4494305, -2, 12.739155)
+
+[node name="gik_corner_stair_1_004_15" parent="terrain" instance=ExtResource("10_alwuc")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 34.184593, 0.070363045, 22.479137)
+
+[node name="gik_long_stair_1_13" parent="terrain" instance=ExtResource("11_8fu1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.321635, -1, 13)
+
+[node name="slope" parent="terrain" instance=ExtResource("6_ays0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.575252, 0, -0.062129974)
+
+[node name="@Node3D@54228" parent="terrain" instance=ExtResource("6_ays0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.701135, 0, 0)
+
+[node name="fence_003_8" parent="terrain" instance=ExtResource("12_k1aiw")]
+transform = Transform3D(0.7893727, 0, 0, 0, 1, 0, 0, 0, 1, 11.188351, 1, 24.85226)
+
+[node name="slope_007_1" parent="." instance=ExtResource("13_t6eka")]
+transform = Transform3D(0.5602766, 0, -0.23692366, 0, 0.60831136, 0, 0.23692366, 0, 0.5602766, 13.799057, 4.7683716e-07, -2.0446563)
+
+[node name="slope_007_10" parent="." instance=ExtResource("13_t6eka")]
+transform = Transform3D(-2.6590135e-08, 0, 0.60831136, 0, 1.1760069, 0, -0.60831136, 0, -2.6590135e-08, 10.111781, -0.6541476, 6.652386)
+
+[node name="FinalArea" parent="." instance=ExtResource("14_nai71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.269958, 0.4, 22.9)
+
+[node name="NextLevelPortal" parent="." instance=ExtResource("15_s5fym")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.999999, -2, 32)
+next_level = ExtResource("16_wq8cb")
+
+[node name="LevelUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AuthorName" type="Label" parent="LevelUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -66.0
+offset_right = -56.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+
+[node name="slope_007_11" parent="." instance=ExtResource("13_t6eka")]
+transform = Transform3D(-2.6590135e-08, 0, 0.60831136, 0, 1.1764076, 0, -0.60831136, 0, -2.6590135e-08, 6.9163766, -0.6693254, 6.59585)
+
+[node name="slope" parent="slope_007_11" instance=ExtResource("6_ays0r")]
+transform = Transform3D(1, 0, 0, 0, -5.090507e-08, -1, 0, 1.1645722, -4.371139e-08, -20.034946, 0.7856245, 1.360659)
+
+[node name="wall_009_10" parent="slope_007_11/slope" instance=ExtResource("8_mab7l")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -15.746926, 1.7201805, -7.519148e-08)
+
+[node name="@Node3D@30988" parent="slope_007_11/slope" instance=ExtResource("8_mab7l")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7.0704474, 1.826791, 0.094504796)

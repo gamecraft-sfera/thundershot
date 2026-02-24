@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbdwdib2q1mqg"]
+
+[ext_resource type="PackedScene" uid="uid://d32gtjkub4byi" path="res://assets/EffectBlocks/assets/other/portal.tscn" id="1_jkutg"]
+[ext_resource type="Script" uid="uid://xqt50eu8dfg" path="res://assets/next_level_portal/next_level_portal.gd" id="1_smrom"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bi2y1"]
+size = Vector3(2, 2.2, 1)
+
+[node name="NextLevelPortal" type="Area3D"]
+script = ExtResource("1_smrom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10000038, 0.6, -1)
+shape = SubResource("BoxShape3D_bi2y1")
+
+[node name="Portal" parent="." instance=ExtResource("1_jkutg")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.3000001, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

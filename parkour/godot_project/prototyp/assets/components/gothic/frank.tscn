@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7sftj6qofp8r"]
+
+[ext_resource type="PackedScene" uid="uid://dims01badj6hl" path="res://assets/statue/frank.glb" id="1_6b6pf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6b6pf"]
+size = Vector3(1.626831, 1.4656982, 1.8428955)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_6b6pf")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01373291, 0.18060303, 0.070129395)
+shape = SubResource("BoxShape3D_6b6pf")

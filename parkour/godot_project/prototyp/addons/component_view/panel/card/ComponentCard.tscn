@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw2bxr7iio67e"]
+
+[ext_resource type="Texture2D" uid="uid://c2jplfiif5lg4" path="res://addons/component_view/assets/default.png" id="1"]
+[ext_resource type="Script" path="res://addons/component_view/panel/card/ComponentCard.gd" id="2"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type canvas_item;
+
+uniform float thickness = 0.1;
+
+void fragment(){
+	float x = UV.x;
+	float y = UV.y;
+	
+	if(x>thickness && x<1.0-thickness && y>thickness && y<1.0-thickness){
+		COLOR.a = 0.0
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="2"]
+shader = SubResource("1")
+
+[node name="ComponentCard" type="Control" groups=["element_editor_card"]]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 108.0
+offset_bottom = 60.0
+tooltip_text = "Empty"
+script = ExtResource("2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("2")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.831373, 0.462745, 0.486275, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1.0
+mouse_filter = 2
+texture = ExtResource("1")
+expand_mode = 1
+
+[connection signal="gui_input" from="." to="." method="_on_ComponentCard_gui_input"]

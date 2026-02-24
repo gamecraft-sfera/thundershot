@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://drmn88jfvpm2v"]
+
+[ext_resource type="PackedScene" uid="uid://b10b8nfd7khkf" path="res://assets/statue/statue_of_emperor_trajan_tower_hill_london.glb" id="1_oxnqk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxnqk"]
+size = Vector3(2.2803345, 5.362732, 1.829834)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_oxnqk")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1907396, -0.828949, 3.0702374)
+shape = SubResource("BoxShape3D_oxnqk")

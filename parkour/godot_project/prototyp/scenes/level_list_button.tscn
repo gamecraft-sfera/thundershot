@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bqm1drs3i17qp"]
+
+[node name="LevelListButton" type="Button"]
+visible = false
+custom_minimum_size = Vector2(200, 60)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "Pan Tau"

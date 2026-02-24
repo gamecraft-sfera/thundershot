@@ -1,0 +1,286 @@
+[gd_scene load_steps=17 format=3 uid="uid://w3ygllptgt6n"]
+
+[ext_resource type="Script" uid="uid://bs488lmrq4l78" path="res://levels/level.gd" id="1_lmjfc"]
+[ext_resource type="AudioStream" uid="uid://cn7ryin2wpj4i" path="res://assets/music/aggressive-techno-409194.mp3" id="2_5rvx2"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="3_6r62q"]
+[ext_resource type="AudioStream" uid="uid://du5yc7rb3xamv" path="res://assets/sounds/footsteps/heavy-walking-footsteps-352771.mp3" id="4_5rvx2"]
+[ext_resource type="Texture2D" uid="uid://cjjqtc43kqqwd" path="res://assets/skyboxes/Skyboxes/AllSkyFree_Sky_AnotherPlanet_Equirect.png" id="5_fd4fe"]
+[ext_resource type="PackedScene" uid="uid://y34svv575w2y" path="res://assets/components/gothic/fence_003_8.tscn" id="6_ajgkk"]
+[ext_resource type="PackedScene" uid="uid://dxi5wo3hah8ad" path="res://assets/components/gothic/gik_arch_1_0.tscn" id="6_t7c8s"]
+[ext_resource type="PackedScene" uid="uid://1ld63fyau6gx" path="res://assets/frames/frame01/frame01.tscn" id="7_o1282"]
+[ext_resource type="PackedScene" uid="uid://dj3aeqdj51jmj" path="res://assets/components/gothic/slope_007_1.tscn" id="8_g7eju"]
+[ext_resource type="PackedScene" uid="uid://g07e86vn0h5g" path="res://assets/components/gothic/statue_1_15.tscn" id="8_lmjfc"]
+[ext_resource type="PackedScene" uid="uid://bh4em1fbetqpx" path="res://assets/final_area/final_area.tscn" id="11_r4f7a"]
+[ext_resource type="PackedScene" uid="uid://cbdwdib2q1mqg" path="res://assets/next_level_portal/next_level_portal.tscn" id="12_5bk8h"]
+[ext_resource type="PackedScene" uid="uid://cafvwtdd3afvx" path="res://levels/level_tereza.tscn" id="13_rjvie"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7c8s"]
+panorama = ExtResource("5_fd4fe")
+
+[sub_resource type="Sky" id="Sky_2iust"]
+sky_material = SubResource("PanoramaSkyMaterial_t7c8s")
+
+[sub_resource type="Environment" id="Environment_20rw3"]
+background_mode = 2
+sky = SubResource("Sky_2iust")
+tonemap_mode = 1
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.26890782, 0.27005783, 0.22305366, 1)
+fog_light_energy = 1.48
+fog_sun_scatter = 0.44
+fog_density = 0.053
+fog_sky_affect = 0.249
+
+[node name="main_world" type="Node3D"]
+script = ExtResource("1_lmjfc")
+puzzle_text = "Skákal [pes], přes [oves]."
+author = "ŠTĚPÁN"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_5rvx2")
+
+[node name="Character" parent="." instance=ExtResource("3_6r62q")]
+unique_name_in_owner = true
+transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, 8.421736, 1.0000019, -6.276314)
+walking_sound = ExtResource("4_5rvx2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_20rw3")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.023599725, -0.39710575, -0.9174694, 0.006323518, -0.9177659, 0.39707145, -0.9997015, 0.003569143, 0.024170129, -13.696991, 12.67791, 9)
+light_color = Color(0.26655066, 0.6106021, 0.9857697, 1)
+light_energy = 8.732
+shadow_enabled = true
+
+[node name="terrain" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -0.5, 0.8048096)
+use_collision = true
+size = Vector3(7, 1, 17)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 21.232544, 12.198299, 21.80481)
+use_collision = true
+size = Vector3(4, 1, 13)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1.6800001, 0, 0, 0, 1.2, 0, 0, 0, -1.8000001, 13.616545, -13.5, 49.85481)
+use_collision = true
+size = Vector3(10, 1, 6)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -1.5, 10.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -3.5, 16.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="gik_arch_1_0" parent="terrain" instance=ExtResource("6_t7c8s")]
+transform = Transform3D(0.028276555, 0, -0.43191877, 0, 0.35517594, 0, 0.35025272, 0, 0.034869608, 9, 0, 3)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -2.5, 13.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_8" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.632544, 0, 10.30481)
+
+[node name="fence_003_9" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, 0, 10.30481)
+
+[node name="fence_003_11" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -1, 13.30481)
+
+[node name="fence_003_12" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -2, 16.30481)
+
+[node name="fence_003_13" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -2, 16.30481)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -4.5, 19.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_14" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -3, 19.30481)
+
+[node name="fence_003_15" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -3, 19.30481)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -5.5, 22.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_16" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -4, 22.30481)
+
+[node name="fence_003_17" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -4, 22.30481)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -6.5, 25.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_18" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -5, 25.30481)
+
+[node name="fence_003_19" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -5, 25.30481)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -2.5, 13.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_10" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.632544, -1, 13.30481)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -7.5, 28.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -9.5, 34.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_20" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.632544, -6, 28.30481)
+
+[node name="fence_003_21" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -6, 28.30481)
+
+[node name="fence_003_22" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -7, 31.30481)
+
+[node name="fence_003_23" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -8, 34.30481)
+
+[node name="fence_003_24" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -8, 34.30481)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -10.5, 37.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_25" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -9, 37.30481)
+
+[node name="fence_003_26" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -9, 37.30481)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -11.5, 40.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_27" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -10, 40.30481)
+
+[node name="fence_003_28" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -10, 40.30481)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -12.5, 42.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_29" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.032544, -11, 43.30481)
+
+[node name="fence_003_30" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.432544, -11, 43.30481)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.732544, -8.5, 31.80481)
+use_collision = true
+size = Vector3(7, 1, 3)
+
+[node name="fence_003_31" parent="terrain" instance=ExtResource("6_ajgkk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.632544, -7, 31.30481)
+
+[node name="statue_1_15" parent="terrain" instance=ExtResource("8_lmjfc")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15, 0, 0)
+
+[node name="statue_1_17" parent="terrain" instance=ExtResource("8_lmjfc")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 2, 0, 0)
+
+[node name="statue_1_16" parent="terrain" instance=ExtResource("8_lmjfc")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15, 0, -6)
+
+[node name="statue_1_18" parent="terrain" instance=ExtResource("8_lmjfc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -6)
+
+[node name="Frame1" parent="." instance=ExtResource("7_o1282")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.937981, -11.491045, 50.279785)
+original_text = "[wave amp=40.0 freq=1.0 connected=1]Vrtěti 
+[color=red]pes[/color].[/wave]"
+
+[node name="Frame2" parent="." instance=ExtResource("7_o1282")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.93798, -0.491045, 17.279787)
+original_text = "[wave amp=40.0 freq=1.0 connected=1]
+[color=red]Oves[/color]ná kaše.[/wave]"
+
+[node name="slope_007_14" parent="." instance=ExtResource("8_g7eju")]
+transform = Transform3D(-0.0320756, 0, -0.3868683, 0, 0.3557697, 0, 0.33969477, 0, 0.013728201, 6.3455944, 1.1440295e-06, 6.806059)
+
+[node name="slope_007_15" parent="." instance=ExtResource("8_g7eju")]
+transform = Transform3D(-0.032399595, 0, -0.39077604, 0, 0.35936332, 0, 0.343126, 0, 0.013866872, 11.24002, 1.1440295e-06, 6.7571354)
+
+[node name="slope_007_13" parent="." instance=ExtResource("8_g7eju")]
+transform = Transform3D(0.39072526, 0, -0.45829216, 0, 0.5934745, 0, 0.4024094, 0, 0.4449854, 6.3479424, 7.1525574e-07, 4.985087)
+
+[node name="slope_007_12" parent="." instance=ExtResource("8_g7eju")]
+transform = Transform3D(0.39467198, 0, -0.46292135, 0, 0.5994692, 0, 0.40647414, 0, 0.44948018, 11.147943, 7.1525574e-07, 4.985087)
+
+[node name="slope_007_10" parent="." instance=ExtResource("8_g7eju")]
+transform = Transform3D(0.5602766, 0, -0.23692366, 0, 0.60831136, 0, 0.23692366, 0, 0.5602766, 5.799057, 4.7683716e-07, 2.9553432)
+
+[node name="slope_007_11" parent="." instance=ExtResource("8_g7eju")]
+transform = Transform3D(0.5602766, 0, -0.23692366, 0, 0.60831136, 0, 0.23692366, 0, 0.5602766, 11.799057, 4.7683716e-07, 2.9553432)
+
+[node name="FinalArea" parent="." instance=ExtResource("11_r4f7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 0.39999962, 3.8999996)
+
+[node name="NextLevelPortal" parent="." instance=ExtResource("12_5bk8h")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.000001, 27, -4)
+next_level = ExtResource("13_rjvie")
+
+[node name="LevelUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AuthorName" type="Label" parent="LevelUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -66.0
+offset_right = -56.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25

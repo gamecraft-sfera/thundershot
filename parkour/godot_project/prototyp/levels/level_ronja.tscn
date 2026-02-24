@@ -1,0 +1,168 @@
+[gd_scene load_steps=20 format=3 uid="uid://cvcxjlmjaptqb"]
+
+[ext_resource type="Script" uid="uid://bs488lmrq4l78" path="res://levels/level.gd" id="1_2vjdm"]
+[ext_resource type="AudioStream" uid="uid://bprr5c6yxjboe" path="res://assets/music/emotional-ambient-piece-with-slow-cinematic-textures-370142.mp3" id="2_gji1p"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="3_vamj4"]
+[ext_resource type="AudioStream" uid="uid://du5yc7rb3xamv" path="res://assets/sounds/footsteps/heavy-walking-footsteps-352771.mp3" id="4_ip03v"]
+[ext_resource type="Texture2D" uid="uid://cr7goy2xwnbor" path="res://assets/skyboxes/Skyboxes/AllSkyFree_Sky_EpicGloriousPink_Equirect.png" id="5_wjy21"]
+[ext_resource type="PackedScene" uid="uid://1ld63fyau6gx" path="res://assets/frames/frame01/frame01.tscn" id="6_jfty2"]
+[ext_resource type="PackedScene" uid="uid://q16aggykdbpd" path="res://assets/components/gothic/statue_2_16.tscn" id="7_qqqrg"]
+[ext_resource type="PackedScene" uid="uid://dj3aeqdj51jmj" path="res://assets/components/gothic/slope_007_1.tscn" id="7_tkku1"]
+[ext_resource type="PackedScene" uid="uid://bh4em1fbetqpx" path="res://assets/final_area/final_area.tscn" id="8_m8tp6"]
+[ext_resource type="PackedScene" uid="uid://c7i5bx0ckjrow" path="res://assets/components/gothic/gik_corner_stair_1_004_14.tscn" id="8_tkku1"]
+[ext_resource type="PackedScene" uid="uid://co7gvayamyikg" path="res://assets/components/gothic/wall_009_10.tscn" id="8_vwsaj"]
+[ext_resource type="PackedScene" uid="uid://cbdwdib2q1mqg" path="res://assets/next_level_portal/next_level_portal.tscn" id="9_7wlau"]
+[ext_resource type="PackedScene" uid="uid://d23s8ywe8qgpj" path="res://assets/components/gothic/fence_1_001_7.tscn" id="9_m8tp6"]
+[ext_resource type="PackedScene" uid="uid://dxi5wo3hah8ad" path="res://assets/components/gothic/gik_arch_1_0.tscn" id="9_pjrvi"]
+[ext_resource type="PackedScene" uid="uid://dhcrfhvue3lb" path="res://assets/components/gothic/min_window_12.tscn" id="13_1uw84"]
+[ext_resource type="PackedScene" uid="uid://w3ygllptgt6n" path="res://levels/level_stepan.tscn" id="16_wjy21"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7c8s"]
+panorama = ExtResource("5_wjy21")
+
+[sub_resource type="Sky" id="Sky_2iust"]
+sky_material = SubResource("PanoramaSkyMaterial_t7c8s")
+
+[sub_resource type="Environment" id="Environment_20rw3"]
+background_mode = 2
+sky = SubResource("Sky_2iust")
+tonemap_mode = 1
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.7399287, 0.5510598, 0.21740931, 1)
+fog_light_energy = 1.48
+fog_sun_scatter = 0.44
+fog_density = 0.053
+fog_sky_affect = 0.249
+
+[node name="main_world2" type="Node3D"]
+script = ExtResource("1_2vjdm")
+puzzle_text = "Mám nejlepšího [bráchu]. Mám nejlepší [ségru].Vuk je [pes]."
+author = "Eliáš a Ronja"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_gji1p")
+
+[node name="Character" parent="." instance=ExtResource("3_vamj4")]
+unique_name_in_owner = true
+transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, 12.344688, 1.0000019, -2.744461)
+walking_sound = ExtResource("4_ip03v")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_20rw3")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8695799, 0.49114698, -0.051043745, -0.3434997, -0.52740943, 0.7770761, 0.35473758, 0.6932632, 0.6273336, 7.303009, 8.67791, 0)
+light_color = Color(0.51115954, 0.55708605, 0.96564955, 1)
+light_energy = 3.14
+shadow_enabled = true
+
+[node name="terrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20780945, 3.742856)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.312378, -0.5, -1.8227496)
+use_collision = true
+size = Vector3(7.840332, 1, 12)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 0.92123294, 0.3890114, 0, -0.3890114, 0.92123294, 12.010328, 1.3455915, 9.324439)
+use_collision = true
+size = Vector3(1.6806641, 1, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.232544, -0.5, 17.20122)
+use_collision = true
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(0.99995446, -0.0035197525, -0.008869385, 0.0034768083, 0.9999822, -0.004853634, 0.0088863075, 0.004822583, 0.99994886, 19.616789, -0.5, 18.80481)
+use_collision = true
+size = Vector3(4, 1, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.232544, -0.5, 24.80481)
+use_collision = true
+size = Vector3(4, 1, 5)
+
+[node name="fence_1_001_7" parent="terrain" instance=ExtResource("9_m8tp6")]
+transform = Transform3D(0.009845303, -0.02123407, 0.9997261, 8.673601e-05, 0.9997746, 0.02123425, -0.9999516, -0.0001223804, 0.009844925, 11.968811, 0.0074697137, 5.9467325)
+
+[node name="statue_2_16" parent="terrain" instance=ExtResource("7_qqqrg")]
+transform = Transform3D(-2.1285572, 0, 0.02559781, 0, 2.128711, 0, -0.02559781, 0, -2.1285572, 11.21653, 1.1764684, 26.828672)
+
+[node name="wall_009_10" parent="terrain" instance=ExtResource("8_vwsaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.213634, 0.02275145, 26.793982)
+
+[node name="gik_arch_1_0" parent="terrain" instance=ExtResource("9_pjrvi")]
+transform = Transform3D(0.029771905, 0, -0.36877516, 0, 0.36997494, 0, 0.36877516, 0, 0.029771905, 11.163003, 0, 22.749092)
+
+[node name="@Node3D@59084" parent="terrain" instance=ExtResource("9_m8tp6")]
+transform = Transform3D(0.03714949, 0, 0.9993097, 0.34859297, 0.93718463, -0.012958996, -0.9365377, 0.34883377, 0.03481593, 12.001018, 1.3765583, 12.771415)
+
+[node name="slope_007_1" parent="terrain" instance=ExtResource("7_tkku1")]
+transform = Transform3D(0.60831136, 0, 0, 0, 0.017165504, -0.60806906, 0, 0.60806906, 0.017165504, 11.12643, 0, 19.333656)
+
+[node name="gik_corner_stair_1_004_14" parent="terrain" instance=ExtResource("8_tkku1")]
+transform = Transform3D(-0.8048938, 0, -0.5934189, 0, 1, 0, 0.5934189, 0, -0.8048938, 15.783232, -1.4591978, 23.65617)
+
+[node name="Frame1" parent="terrain" instance=ExtResource("6_jfty2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21.15194, 1.0083816, 17.0606)
+original_text = "[wave amp=40.0 freq=1.0 connected=1] 
+[color=red]pes[/color]  je nejlepší přítel člověka.[/wave]"
+
+[node name="@Node3D@69308" parent="terrain" instance=ExtResource("9_pjrvi")]
+transform = Transform3D(-0.27629504, 0, -0.2460539, 0, 0.36997494, 0, 0.2460539, 0, -0.27629504, 18.817348, 0.05732584, 19.500004)
+
+[node name="min_window_12" parent="terrain" instance=ExtResource("13_1uw84")]
+transform = Transform3D(0.06328586, 0, -1.7039715, 0, 1.7051463, 0, 1.7039715, 0, 0.06328586, 19.624485, 6.795902, 19.390068)
+
+[node name="Frame1" parent="." instance=ExtResource("6_jfty2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.93798, 0.9789431, 5.623898)
+original_text = "[wave amp=40.0 freq=1.0 connected=1] 
+[color=red]ségru[/color] nejraději tahám za vlasy.[/wave]"
+
+[node name="Frame2" parent="." instance=ExtResource("6_jfty2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.93798, 2.9721353, 14.279787)
+original_text = "[wave amp=40.0 freq=1.0 connected=1]
+[color=red]bráchu[/color] přeperu levou zadní.[/wave]"
+
+[node name="slope_007_1" parent="." instance=ExtResource("7_tkku1")]
+transform = Transform3D(0.5602766, 0, -0.23692366, 0, 0.60831136, 0, 0.23692366, 0, 0.5602766, 14.799057, -0.24389994, -2.0446563)
+
+[node name="slope_007_10" parent="." instance=ExtResource("7_tkku1")]
+transform = Transform3D(0.5602766, 0, -0.23692366, 0, 0.60831136, 0, 0.23692366, 0, 0.5602766, 8.791055, -0.2050761, -2.0400953)
+
+[node name="FinalArea" parent="." instance=ExtResource("8_m8tp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6, 0.4, 22.9)
+
+[node name="NextLevelPortal" parent="." instance=ExtResource("9_7wlau")]
+unique_name_in_owner = true
+transform = Transform3D(0.070835896, 0, -0.99748796, 0, 1, 0, 0.99748796, 0, 0.070835896, 19.909239, 0, 22.433949)
+next_level = ExtResource("16_wjy21")
+
+[node name="LevelUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AuthorName" type="Label" parent="LevelUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -66.0
+offset_right = -56.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25

@@ -1,0 +1,201 @@
+[gd_scene load_steps=15 format=3 uid="uid://bsds06dmjayr3"]
+
+[ext_resource type="Script" uid="uid://bs488lmrq4l78" path="res://levels/level.gd" id="1_w5g0g"]
+[ext_resource type="AudioStream" uid="uid://cn7ryin2wpj4i" path="res://assets/music/aggressive-techno-409194.mp3" id="2_v5gks"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="3_xlx3n"]
+[ext_resource type="AudioStream" uid="uid://du5yc7rb3xamv" path="res://assets/sounds/footsteps/heavy-walking-footsteps-352771.mp3" id="4_gsrs2"]
+[ext_resource type="Texture2D" uid="uid://cr7goy2xwnbor" path="res://assets/skyboxes/Skyboxes/AllSkyFree_Sky_EpicGloriousPink_Equirect.png" id="5_w5g0g"]
+[ext_resource type="PackedScene" uid="uid://1ld63fyau6gx" path="res://assets/frames/frame01/frame01.tscn" id="6_4hvsx"]
+[ext_resource type="PackedScene" uid="uid://dxi5wo3hah8ad" path="res://assets/components/gothic/gik_arch_1_0.tscn" id="7_v5gks"]
+[ext_resource type="PackedScene" uid="uid://bh4em1fbetqpx" path="res://assets/final_area/final_area.tscn" id="8_b8fng"]
+[ext_resource type="PackedScene" uid="uid://cbdwdib2q1mqg" path="res://assets/next_level_portal/next_level_portal.tscn" id="9_yj147"]
+[ext_resource type="PackedScene" uid="uid://bks68irs3lfce" path="res://levels/level_erik.tscn" id="10_v5gks"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7c8s"]
+panorama = ExtResource("5_w5g0g")
+
+[sub_resource type="Sky" id="Sky_2iust"]
+sky_material = SubResource("PanoramaSkyMaterial_t7c8s")
+
+[sub_resource type="Environment" id="Environment_20rw3"]
+background_mode = 2
+sky = SubResource("Sky_2iust")
+tonemap_mode = 1
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.32062027, 0.2099269, 0.39966458, 1)
+fog_light_energy = 1.48
+fog_sun_scatter = 0.44
+fog_density = 0.053
+fog_sky_affect = 0.249
+
+[sub_resource type="PrismMesh" id="PrismMesh_w5g0g"]
+left_to_right = 0.1
+
+[node name="main_world" type="Node3D"]
+script = ExtResource("1_w5g0g")
+puzzle_text = "Norsko:  [Oslo]
+Makedonie: [Skopie]
+Indie: [Nové dilí]
+Ukrajina: [Kyjev]
+Finsko: [Helsinky]"
+author = "Anna"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_v5gks")
+
+[node name="Character" parent="." instance=ExtResource("3_xlx3n")]
+unique_name_in_owner = true
+transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, 11.421736, 0.15087438, -4.7424183)
+walking_sound = ExtResource("4_gsrs2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_20rw3")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9997015, -0.003569122, -0.024170078, 0.0051001646, 0.99796367, 0.06358236, 0.023893923, -0.06368667, 0.9976839, 7.303009, 8.67791, 0)
+light_color = Color(0.5815174, 0.6001888, 0.6520328, 1)
+light_energy = 3.14
+shadow_enabled = true
+
+[node name="terrain" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.232544, -0.5, -1.6951904)
+use_collision = true
+size = Vector3(10, 1, 12)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.314026, -0.4074707, 6.4830017)
+use_collision = true
+size = Vector3(3.8370361, 0.8149414, 1.4314575)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.638781, -1.5434414, 9.197576)
+use_collision = true
+size = Vector3(4.6578827, 1.1563721, 2.95961)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.342494, -1.2305155, 16.453077)
+use_collision = true
+size = Vector3(3.5913086, 0.7001953, 3.0208435)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.132835, -0.6881664, 20.65939)
+use_collision = true
+size = Vector3(3.5849, 0.7001953, 3.0208435)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.434238, -0.36865222, 12.752273)
+use_collision = true
+size = Vector3(3.5913086, 0.7001953, 3.0208435)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.755231, -2.0229769, 35.014767)
+use_collision = true
+size = Vector3(13.922001, 1, 7.9371033)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.756036, 1.3545761, 38.734703)
+use_collision = true
+size = Vector3(13.876419, 5.7582397, 0.48388672)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.509575, 11.757942, 3.9521143, 31.504341)
+use_collision = true
+size = Vector3(13.876419, 0.59806824, 0.48388672)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.88725, 1.3545761, 31.404861)
+use_collision = true
+size = Vector3(5.613991, 5.7582397, 0.48388672)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.417302, 1.3545761, 31.315647)
+use_collision = true
+size = Vector3(5.1989517, 5.7582397, 0.48388672)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(0.009860908, 0, 0.99995136, 0, 1, 0, -0.99995136, 0, 0.009860908, 18.437952, 1.3308439, 34.801746)
+use_collision = true
+size = Vector3(7.430175, 5.7582397, 0.48388672)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(0.009860908, 0, 0.99995136, 0, 1, 0, -0.99995136, 0, 0.009860908, 5.109935, 1.330843, 34.774265)
+use_collision = true
+size = Vector3(7.430175, 5.7582397, 0.48388672)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.232544, -1.5353794, 25.188171)
+use_collision = true
+size = Vector3(4, 1, 3.9034424)
+
+[node name="gik_arch_1_0" parent="terrain" instance=ExtResource("7_v5gks")]
+transform = Transform3D(-1.617212e-08, 0, 0.36997497, 0, 0.3050714, 0, -0.36997497, 0, -1.617212e-08, 11.570162, -1.5466888, 31.36878)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="terrain"]
+transform = Transform3D(-0.9999843, -0.0056198556, 0, 0.0056198556, -0.9999843, 0, 0, 0, 0.84975666, 12.666875, 3.3331203, 31.499693)
+mesh = SubResource("PrismMesh_w5g0g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="terrain"]
+transform = Transform3D(0.014241464, 0.9998986, 0, -0.9998986, 0.014241464, 0, 0, 0, 0.8424152, 10.283802, 3.3331203, 31.466604)
+mesh = SubResource("PrismMesh_w5g0g")
+
+[node name="Frame1" parent="." instance=ExtResource("6_4hvsx")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.781397, 0.48664862, 6.521442)
+original_text = "[wave amp=40.0 freq=1.0 connected=1] 
+[color=red]Helsinky[/color].[/wave]"
+
+[node name="Frame3" parent="." instance=ExtResource("6_4hvsx")]
+transform = Transform3D(-4.371139e-08, 0.03141076, -0.99950653, 0, 0.99950653, 0.03141076, 1, 1.3730079e-09, -4.368982e-08, 13.246756, -0.484356, 9.181315)
+original_text = "[wave amp=40.0 freq=1.0 connected=1] 
+[color=red]Skopie[/color][/wave]"
+
+[node name="Frame4" parent="." instance=ExtResource("6_4hvsx")]
+transform = Transform3D(-4.371139e-08, 0, -1.0000001, 0, 1, 0, 1, 0, -4.3711392e-08, 12.876284, 0.9890042, 12.713664)
+original_text = "[wave amp=40.0 freq=1.0 connected=1] 
+[color=red]Nové Dilí[/color][/wave]"
+
+[node name="Frame5" parent="." instance=ExtResource("6_4hvsx")]
+transform = Transform3D(-4.371139e-08, 0.03141076, -0.99950653, 0, 0.99950653, 0.03141076, 1, 1.3730079e-09, -4.368982e-08, 12.604754, 0.22623223, 20.651333)
+original_text = "[wave amp=40.0 freq=1.0 connected=1] 
+[color=red]Kyjev[/color][/wave]"
+
+[node name="Frame2" parent="." instance=ExtResource("6_4hvsx")]
+transform = Transform3D(-0.000107679865, -0.0011147591, -0.9999994, 0.0038612708, 0.99999195, -0.0011151765, 0.99999255, -0.0038613908, -0.00010338069, 12.640491, -0.13056064, 16.51633)
+original_text = "[wave amp=40.0 freq=1.0 connected=1]
+[color=red]Oslo[/color][/wave]"
+
+[node name="FinalArea" parent="." instance=ExtResource("8_b8fng")]
+transform = Transform3D(0.99939746, 0.038498003, 0.019377027, -0.029768022, 1.3280607, 0.044602565, -0.017845456, -0.059341773, 1.0107695, 11.006843, 0.03787464, 0.22470665)
+
+[node name="NextLevelPortal" parent="." instance=ExtResource("9_yj147")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.576906, -1.1279204, 35.33723)
+next_level = ExtResource("10_v5gks")
+
+[node name="LevelUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AuthorName" type="Label" parent="LevelUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -66.0
+offset_right = -56.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25

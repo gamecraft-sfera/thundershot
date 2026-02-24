@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn28wih5b0n0x"]
+
+[ext_resource type="Script" uid="uid://bs488lmrq4l78" path="res://levels/level.gd" id="1_lmjfc"]
+[ext_resource type="AudioStream" uid="uid://bxincuxtlhr1e" path="res://assets/music/relaxing-electronic-ambient-music-354471.mp3" id="2_i0u2n"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="3_6r62q"]
+[ext_resource type="Texture2D" uid="uid://cr7goy2xwnbor" path="res://assets/skyboxes/Skyboxes/AllSkyFree_Sky_EpicGloriousPink_Equirect.png" id="5_pgvyp"]
+[ext_resource type="PackedScene" uid="uid://d23s8ywe8qgpj" path="res://assets/components/gothic/fence_1_001_7.tscn" id="6_aedk1"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7c8s"]
+panorama = ExtResource("5_pgvyp")
+
+[sub_resource type="Sky" id="Sky_2iust"]
+sky_material = SubResource("PanoramaSkyMaterial_t7c8s")
+
+[sub_resource type="Environment" id="Environment_20rw3"]
+background_mode = 2
+sky = SubResource("Sky_2iust")
+tonemap_mode = 1
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.95709115, 0.34635866, 0.59127265, 1)
+fog_light_energy = 1.48
+fog_sun_scatter = 0.44
+fog_density = 0.053
+fog_sky_affect = 0.249
+
+[node name="main_world" type="Node3D"]
+script = ExtResource("1_lmjfc")
+puzzle_text = "Skákal [pes], přes [oves]."
+author = "Táďa"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_i0u2n")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_20rw3")
+
+[node name="terrain" type="Node3D" parent="."]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.732544, -0.5, 14.40481)
+use_collision = true
+size = Vector3(11, 1, 7.8)
+
+[node name="fence_1_001_7" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 0, 10.8)
+
+[node name="fence_1_001_9" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.799999, 0, 10.8)
+
+[node name="fence_1_001_10" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.199999, 0, 10.8)
+
+[node name="fence_1_001_11" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 0, 17.8)
+
+[node name="fence_1_001_15" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, -2.9802322e-08, 6.7999997, 0, 15.999999)
+
+[node name="fence_1_001_16" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, -2.9802322e-08, 6.7999997, 0, 12.599998)
+
+[node name="fence_1_001_17" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, -2.9802322e-08, 16.8, 0, 15.999999)
+
+[node name="fence_1_001_18" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, -2.9802322e-08, 16.8, 0, 12.599998)
+
+[node name="fence_1_001_12" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4, 0, 17.8)
+
+[node name="fence_1_001_13" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.799999, 0, 17.8)
+
+[node name="fence_1_001_14" parent="terrain" instance=ExtResource("6_aedk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.199999, 0, 17.8)
+
+[node name="Character" parent="." instance=ExtResource("3_6r62q")]
+unique_name_in_owner = true
+transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, 12.421736, 1.0000019, 13.723686)
+
+[node name="LevelUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AuthorName" type="Label" parent="LevelUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -66.0
+offset_right = -56.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25

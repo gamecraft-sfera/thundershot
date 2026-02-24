@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://1ld63fyau6gx"]
+
+[ext_resource type="PackedScene" uid="uid://bol7t5ohxrbx" path="res://assets/frames/frame01/frame01.gltf" id="1_pijpp"]
+[ext_resource type="Script" uid="uid://bbi4ab0sqkc5u" path="res://assets/frames/frame01/frame.gd" id="2_i2su1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i2su1"]
+points = PackedVector3Array(1, 1, 0.057068117, 1, -1, 0.057068117, 1, 1, -0.11517764, -1, 1, 0.057068117, 1, -1, -0.11517764, -1, -1, 0.057068117, -1, 1, -0.11517764, -1, -1, -0.11517764)
+
+[sub_resource type="QuadMesh" id="QuadMesh_i2su1"]
+resource_local_to_scene = true
+size = Vector2(0.55, 0.55)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k3s2n"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3s2n"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_k3s2n")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2su1"]
+size = Vector3(1, 1, 0.7182617)
+
+[node name="Frame" instance=ExtResource("1_pijpp")]
+script = ExtResource("2_i2su1")
+
+[node name="frame_01_Target2_mat_Frame_1_silver_0" parent="Sketchfab_model/a75c0dc574e34aa4b0ccda4d1c2904d4_fbx/RootNode/frame_01_Target2" index="0"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1.0310552, -2.9610927, 6.7055225e-08)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/a75c0dc574e34aa4b0ccda4d1c2904d4_fbx/RootNode/frame_01_Target2/frame_01_Target2_mat_Frame_1_silver_0" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/a75c0dc574e34aa4b0ccda4d1c2904d4_fbx/RootNode/frame_01_Target2/frame_01_Target2_mat_Frame_1_silver_0/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_i2su1")
+
+[node name="SubViewport" type="SubViewport" parent="." index="1"]
+transparent_bg = true
+
+[node name="TextLabel" type="RichTextLabel" parent="SubViewport" index="0"]
+unique_name_in_owner = true
+offset_right = 512.0
+offset_bottom = 512.0
+theme_override_colors/default_color = Color(0.4529031, 0.106286205, 0.679001, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=1.0 connected=1]Jdu loukou a duše plane
+Však ke mě se naděje nedostane
+sdf fg fs dhs gsd hs ghydsh shydhsd hdg dhsdgh sghsgdh sdgh sdghsdg sdg h[/shake]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+mesh = SubResource("QuadMesh_i2su1")
+surface_material_override/0 = SubResource("StandardMaterial3D_k3s2n")
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.37771118)
+shape = SubResource("BoxShape3D_i2su1")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
