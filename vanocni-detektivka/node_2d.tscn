@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://kkk4lavs617h"]
+
+[ext_resource type="Script" uid="uid://bmg2ddvuejaee" path="res://node_2d.gd" id="1_0hol4"]
+[ext_resource type="Texture2D" uid="uid://brusn01bwxmnx" path="res://vanoce krimi.png" id="2_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://51ohivgqghuy" path="res://darek1.png" id="3_kdubu"]
+[ext_resource type="Texture2D" uid="uid://bus0lt0ioy6w" path="res://darek2.png" id="4_d21ai"]
+[ext_resource type="Texture2D" uid="uid://l0cbbq5e5ynl" path="res://darek3.png" id="5_q6r6c"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0hol4")
+
+[node name="VanoceKrimi" type="Sprite2D" parent="."]
+position = Vector2(489, 700)
+scale = Vector2(0.5368805, 0.4915875)
+texture = ExtResource("2_q6r6c")
+
+[node name="darek tlacitko" type="TextureButton" parent="."]
+offset_left = 511.0
+offset_top = 492.0
+offset_right = 608.0
+offset_bottom = 579.0
+texture_normal = ExtResource("4_d21ai")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Darek2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(559, 535)
+scale = Vector2(0.108072914, 0.108072914)
+texture = ExtResource("4_d21ai")
+
+[node name="Darek1" type="Sprite2D" parent="."]
+position = Vector2(719, 521)
+scale = Vector2(0.13405798, 0.13405795)
+texture = ExtResource("3_kdubu")
+
+[node name="Darek3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(556, 520)
+scale = Vector2(0.13973798, 0.13973798)
+texture = ExtResource("5_q6r6c")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 468.0
+offset_top = 563.0
+offset_right = 833.0
+offset_bottom = 618.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "vanončí detektivka"
+
+[connection signal="pressed" from="darek tlacitko" to="." method="_on_darek_tlacitko_pressed"]
