@@ -1,6 +1,7 @@
 class_name NextLevelPortal extends Area3D
 
 @export var next_level: PackedScene
+signal on_finish
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +15,7 @@ func _on_body_entered(body: Node3D) -> void:
 
 func switch_to_next_scene() -> void:
 	if next_level == null:
-		print("Warning: No next level scene assigned to portal")
+		on_finish.emit()
 		return
 	
 	# Get the current scene

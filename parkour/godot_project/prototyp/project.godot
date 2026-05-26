@@ -11,10 +11,9 @@ config_version=5
 [application]
 
 config/name="jakub"
-run/main_scene="uid://n6lj01e7q6hx"
+run/main_scene="uid://d1rshm33rxi4p"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray()
 
 [autoload]
 
@@ -25,10 +24,6 @@ GameManager="*res://scripts/game_manager.gd"
 window/size/viewport_width=3000
 window/size/viewport_height=1500
 window/dpi/allow_hidpi=false
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/component_view/plugin.cfg")
 
 [global_group]
 

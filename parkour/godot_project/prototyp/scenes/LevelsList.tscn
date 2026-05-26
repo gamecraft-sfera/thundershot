@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://blsklxy3a5ola" path="res://levels/level_ester.tscn" id="6_je64b"]
 [ext_resource type="PackedScene" uid="uid://pnxvah7vnxhm" path="res://levels/level_filip.tscn" id="7_nddsh"]
 [ext_resource type="PackedScene" uid="uid://bme6bhuw4s1xr" path="res://levels/level_gabriel.tscn" id="8_ce0vw"]
-[ext_resource type="PackedScene" uid="uid://mvchuf4uaybi" path="res://levels/level_matyas.tscn" id="9_rty3i"]
+[ext_resource type="PackedScene" uid="uid://mvchuf4uaybi" path="res://levels/level_kuba.tscn" id="9_rty3i"]
 [ext_resource type="PackedScene" uid="uid://c5g50oo6ajvhn" path="res://levels/level_maya.tscn" id="10_pi7sw"]
 [ext_resource type="PackedScene" uid="uid://cy7dr2hv22ihh" path="res://levels/level_mikolas.tscn" id="11_3vvwa"]
 [ext_resource type="PackedScene" uid="uid://dn286o6ngkeg2" path="res://levels/level_misa.tscn" id="12_ebc16"]
