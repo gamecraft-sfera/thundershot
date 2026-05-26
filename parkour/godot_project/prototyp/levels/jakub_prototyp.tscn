@@ -164,7 +164,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0228815, 0.43645564, -2129
 
 [node name="NextLevelPortal" parent="." instance=ExtResource("15_s5fym")]
 unique_name_in_owner = true
-transform = Transform3D(0.007958642, 0, -0.99996835, 0, 1, 0, 0.99996835, 0, 0.007958642, 5.277155, 0.44538164, 13.060715)
+transform = Transform3D(0.007958642, 0, -0.99996835, 0, 1, 0, 0.99996835, 0, 0.007958642, -5.6767445, 1.2802062, 27.457664)
 
 [node name="LevelUI" type="Control" parent="."]
 layout_mode = 3
@@ -266,6 +266,7 @@ offset_bottom = 23.0
 text = "0s"
 
 [node name="ResetButton" type="Button" parent="LevelUI"]
+visible = false
 layout_mode = 0
 offset_left = 11.989896
 offset_top = 172.76884
