@@ -13,6 +13,7 @@ var celkovy_cas: float = 0.0
 
 var min_pocet_pokusu: int = 99999
 var min_celkovy_cas: float = 99999
+var autor_rekordu: String = ""
 
 var levels_list: Control
 
@@ -31,6 +32,7 @@ func _ready() -> void:
 	player_original_position = character.global_position
 	author_name.text = author
 	%NextLevelPortal.on_finish.connect(_on_finish)
+	%WinPanel.on_name_entered.connect(name_entered)
 
 func load_values():
 	var file = FileAccess.open("user://save.dat", FileAccess.READ)
@@ -38,6 +40,7 @@ func load_values():
 	if file:
 		min_pocet_pokusu = file.get_32()
 		min_celkovy_cas = file.get_float()
+		autor_rekordu = file.get_pascal_string()
 		file.close()
 		print("min pokusu: ", min_pocet_pokusu)
 		print("min cas:", min_celkovy_cas)
@@ -49,19 +52,25 @@ func save_values():
  
 	file.store_32(min_pocet_pokusu)      # save int
 	file.store_float(min_celkovy_cas) # save float
+	file.store_pascal_string(autor_rekordu)
 	file.close()
 
 func _nastav_min_napisy():
 	$LevelUI/Nejlepsipokus/Pokus/Label.text = str(min_pocet_pokusu)
 	$LevelUI/Nejlepsipokus/Cas/Label.text = String.num(min_celkovy_cas, 0) + "s"
+	%JmenoLabel.text = autor_rekordu
 	
-	
+func name_entered():
+	autor_rekordu = %WinPanel.author_name
+	save_values()
+	_nastav_min_napisy()
+
 func _on_finish() -> void:
-	if pocet_pokusu < min_pocet_pokusu:
-		min_pocet_pokusu = pocet_pokusu
 	if celkovy_cas < min_celkovy_cas:
 		min_celkovy_cas = celkovy_cas
-		
+		min_pocet_pokusu = pocet_pokusu
+		%WinPanel.visible = true
+			
 	save_values()
 		
 	_nastav_min_napisy()
@@ -76,20 +85,8 @@ func _physics_process(delta: float) -> void:
 		%PocetPokusu.text = str(pocet_pokusu)
 		character.global_position = player_original_position
 		
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("levels"):
-		if levels_list:
-			levels_list.visible = not levels_list.visible
-			if levels_list.visible:
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-				#get_tree().paused = false
-			else:
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
-			levels_list = load("uid://d3yo104xfw1br").instantiate()
-			$LevelUI.add_child(levels_list)
-			levels_list.visible = true
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+func _input(_event: InputEvent) -> void:
+	return
 		
 		
 
@@ -97,5 +94,6 @@ func _input(event: InputEvent) -> void:
 func _on_reset_button_pressed() -> void:
 	min_pocet_pokusu = 99999
 	min_celkovy_cas = 99999
+	autor_rekordu = ""
 	save_values()
 	_nastav_min_napisy()

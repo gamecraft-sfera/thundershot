@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1rshm33rxi4p"]
+[gd_scene load_steps=20 format=3 uid="uid://d1rshm33rxi4p"]
 
 [ext_resource type="Script" uid="uid://bs488lmrq4l78" path="res://levels/level.gd" id="1_e3xvy"]
 [ext_resource type="AudioStream" uid="uid://cn7ryin2wpj4i" path="res://assets/music/aggressive-techno-409194.mp3" id="2_its23"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dj3aeqdj51jmj" path="res://assets/components/gothic/slope_007_1.tscn" id="13_t6eka"]
 [ext_resource type="PackedScene" uid="uid://bh4em1fbetqpx" path="res://assets/final_area/final_area.tscn" id="14_nai71"]
 [ext_resource type="PackedScene" uid="uid://cbdwdib2q1mqg" path="res://assets/next_level_portal/next_level_portal.tscn" id="15_s5fym"]
+[ext_resource type="PackedScene" uid="uid://dy632chpflo5b" path="res://levels/win_panel.tscn" id="16_e3xvy"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t7c8s"]
 panorama = ExtResource("5_nabdf")
@@ -164,7 +165,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0228815, 0.43645564, -2129
 
 [node name="NextLevelPortal" parent="." instance=ExtResource("15_s5fym")]
 unique_name_in_owner = true
-transform = Transform3D(0.007958642, 0, -0.99996835, 0, 1, 0, 0.99996835, 0, 0.007958642, -5.6767445, 1.2802062, 27.457664)
+transform = Transform3D(0.007958642, 0, -0.99996835, 0, 1, 0, 0.99996835, 0, 0.007958642, -5.905707, 1.105938, 27.515999)
 
 [node name="LevelUI" type="Control" parent="."]
 layout_mode = 3
@@ -229,10 +230,10 @@ text = "0.0"
 
 [node name="Nejlepsipokus" type="Label" parent="LevelUI"]
 layout_mode = 0
-offset_left = 10.990738
-offset_top = 86.88375
-offset_right = 132.99074
-offset_bottom = 109.88375
+offset_left = 9.991579
+offset_top = 62.915817
+offset_right = 131.99158
+offset_bottom = 85.91582
 text = "Nejlepší pokus: "
 
 [node name="Pokus" type="Label" parent="LevelUI/Nejlepsipokus"]
@@ -266,13 +267,35 @@ offset_bottom = 23.0
 text = "0s"
 
 [node name="ResetButton" type="Button" parent="LevelUI"]
-visible = false
 layout_mode = 0
 offset_left = 11.989896
 offset_top = 172.76884
 offset_right = 65.9899
 offset_bottom = 203.76884
 text = "RESET"
+
+[node name="jmeno" type="Label" parent="LevelUI"]
+layout_mode = 0
+offset_left = 10.990737
+offset_top = 120.83832
+offset_right = 81.930954
+offset_bottom = 143.83832
+text = "Jméno:"
+
+[node name="JmenoLabel" type="Label" parent="LevelUI/jmeno"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.94527
+offset_top = 1.997343
+offset_right = 104.94527
+offset_bottom = 24.997343
+
+[node name="WinPanel" parent="LevelUI" instance=ExtResource("16_e3xvy")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = -415.9137
+offset_right = 440.36462
 
 [node name="slope_007_11" parent="." instance=ExtResource("13_t6eka")]
 transform = Transform3D(-2.6590135e-08, 0, 0.60831136, 0, 1.1764076, 0, -0.60831136, 0, -2.6590135e-08, 6.9163766, -0.6693254, 6.59585)

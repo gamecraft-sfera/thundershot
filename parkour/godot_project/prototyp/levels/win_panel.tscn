@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy632chpflo5b"]
+
+[ext_resource type="Script" uid="uid://byplx6wyfktwv" path="res://levels/win_panel.gd" id="1_ml5jb"]
+
+[node name="WinPanel" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -428.13916
+offset_top = -408.4535
+offset_right = 428.13916
+offset_bottom = 408.4535
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ml5jb")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 143.45349
+offset_right = 102.0
+offset_bottom = 198.45349
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Jsi nejlepší"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -60.0
+offset_right = -54.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Jméno:"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.5
+offset_top = -30.0
+offset_right = 202.5
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OkButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -153.45349
+offset_right = 69.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Ok"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -139.0
+offset_right = 191.0
+offset_bottom = -111.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Napiš svoje jméno a zapiš se do tabulky"
+
+[connection signal="pressed" from="OkButton" to="." method="_on_ok_button_pressed"]
