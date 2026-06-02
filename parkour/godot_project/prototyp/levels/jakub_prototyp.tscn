@@ -267,6 +267,7 @@ offset_bottom = 23.0
 text = "0s"
 
 [node name="ResetButton" type="Button" parent="LevelUI"]
+visible = false
 layout_mode = 0
 offset_left = 11.989896
 offset_top = 172.76884

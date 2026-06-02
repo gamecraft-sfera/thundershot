@@ -62,6 +62,7 @@ func _nastav_min_napisy():
 	
 func name_entered():
 	autor_rekordu = %WinPanel.author_name
+	%WinPanel.visible = false
 	save_values()
 	_nastav_min_napisy()
 
