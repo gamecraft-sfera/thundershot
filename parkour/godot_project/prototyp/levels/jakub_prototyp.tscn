@@ -35,10 +35,10 @@ fog_sun_scatter = 0.44
 fog_density = 0.053
 fog_sky_affect = 0.249
 
-[node name="main_world" type="Node3D"]
+[node name="main_world" type="Node3D" node_paths=PackedStringArray("names")]
 script = ExtResource("1_e3xvy")
-puzzle_text = "[jim] [kebab]ww"
 author = "matyas"
+names = [NodePath("LevelUI/Leaderboard/jmeno1"), NodePath("LevelUI/Leaderboard/jmeno2"), NodePath("LevelUI/Leaderboard/jmeno3"), NodePath("LevelUI/Leaderboard/jmeno4"), NodePath("LevelUI/Leaderboard/jmeno5"), NodePath("LevelUI/Leaderboard/jmeno6"), NodePath("LevelUI/Leaderboard/jmeno7"), NodePath("LevelUI/Leaderboard/jmeno8"), NodePath("LevelUI/Leaderboard/jmeno9"), NodePath("LevelUI/Leaderboard/jmeno10")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -275,6 +275,15 @@ offset_right = 65.9899
 offset_bottom = 203.76884
 text = "RESET"
 
+[node name="TryAgainButton" type="Button" parent="LevelUI"]
+visible = false
+layout_mode = 0
+offset_left = 11.989895
+offset_top = 209.71939
+offset_right = 65.9899
+offset_bottom = 240.71939
+text = "TRY AGAIN"
+
 [node name="jmeno" type="Label" parent="LevelUI"]
 layout_mode = 0
 offset_left = 10.990737
@@ -298,6 +307,63 @@ layout_mode = 1
 offset_left = -415.9137
 offset_right = 440.36462
 
+[node name="Leaderboard" type="VBoxContainer" parent="LevelUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.83748
+offset_top = -293.60718
+offset_right = 192.83748
+offset_bottom = 293.60718
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+text = "Top 10"
+horizontal_alignment = 1
+
+[node name="jmeno1" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno2" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno3" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno4" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno5" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno6" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno7" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno8" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno9" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="jmeno10" type="Label" parent="LevelUI/Leaderboard"]
+layout_mode = 2
+
+[node name="HideLeaderboardButton" type="Button" parent="LevelUI/Leaderboard"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Ok"
+
 [node name="slope_007_11" parent="." instance=ExtResource("13_t6eka")]
 transform = Transform3D(-2.6590135e-08, 0, 0.60831136, 0, 1.1764076, 0, -0.60831136, 0, -2.6590135e-08, 6.9163766, -0.6693254, 6.59585)
 
@@ -311,3 +377,5 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -15.
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7.0704474, 1.826791, 0.094504796)
 
 [connection signal="pressed" from="LevelUI/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="LevelUI/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="LevelUI/Leaderboard/HideLeaderboardButton" to="." method="_on_hide_leaderboard_button_pressed"]

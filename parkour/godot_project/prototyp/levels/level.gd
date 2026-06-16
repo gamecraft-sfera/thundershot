@@ -4,6 +4,8 @@ class_name Level extends Node3D
 
 @export var author: String = "Pan Tau"
 
+@export var names: Array[Label]
+
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 @onready var character: Player = %Character
 @onready var author_name: Label = %AuthorName
@@ -11,11 +13,13 @@ class_name Level extends Node3D
 var pocet_pokusu: int = 1
 var celkovy_cas: float = 0.0
 
-var min_pocet_pokusu: int = 99999
-var min_celkovy_cas: float = 99999
-var autor_rekordu: String = ""
+var new_score_index: int = 10
+
+var top_ten_players: Array[PlayerScore] = []
 
 var levels_list: Control
+
+var _is_finished: bool = false
 
 
 
@@ -26,6 +30,7 @@ var player_original_position: Vector3
 func _ready() -> void:
 	#levels_list.visible = false
 	load_values()
+	_nastav_min_napisy()
 	
 	audio_stream_player.play()
 	GameManager.final_text = puzzle_text
@@ -38,47 +43,73 @@ func load_values():
 	var file = FileAccess.open("user://save.dat", FileAccess.READ)
 	print(file.get_path_absolute())
 	if file:
-		min_pocet_pokusu = file.get_32()
-		min_celkovy_cas = file.get_float()
-		autor_rekordu = file.get_pascal_string()
+		var pocet: int = file.get_32()
+		
+		for i in pocet:
+			var score : PlayerScore = PlayerScore.new()
+			score.pocet_pokusu = file.get_32()
+			score.celkovy_cas = file.get_float()
+			score.autor = file.get_pascal_string()
+			top_ten_players.append(score)
+			
 		file.close()
-		print("min pokusu: ", min_pocet_pokusu)
-		print("min cas:", min_celkovy_cas)
  
 	_nastav_min_napisy()
 	
 func save_values():
 	var file = FileAccess.open("user://save.dat", FileAccess.WRITE)
  
-	file.store_32(min_pocet_pokusu)      # save int
-	file.store_float(min_celkovy_cas) # save float
-	file.store_pascal_string(autor_rekordu)
+	file.store_32(top_ten_players.size())      # save int
+	
+	for score in top_ten_players:
+		file.store_32(score.pocet_pokusu)
+		file.store_float(score.celkovy_cas) # save float
+		file.store_pascal_string(score.autor)
+		
 	file.close()
 
 func _nastav_min_napisy():
-	$LevelUI/Nejlepsipokus/Pokus/Label.text = str(min_pocet_pokusu)
-	$LevelUI/Nejlepsipokus/Cas/Label.text = String.num(min_celkovy_cas, 0) + "s"
-	%JmenoLabel.text = autor_rekordu
+	if not top_ten_players.is_empty():
+		$LevelUI/Nejlepsipokus/Pokus/Label.text = str(top_ten_players[0].pocet_pokusu)
+		$LevelUI/Nejlepsipokus/Cas/Label.text = String.num(top_ten_players[0].celkovy_cas, 0) + "s"
+		%JmenoLabel.text = top_ten_players[0].autor
+		
+		for i in top_ten_players.size():
+			names[i].text = str(i+1) + ". " + top_ten_players[i].autor + " " + str(top_ten_players[i].celkovy_cas) + " " + str(top_ten_players[i].pocet_pokusu)
+			if i >= 9:
+				break
 	
 func name_entered():
-	autor_rekordu = %WinPanel.author_name
+	var new_record: PlayerScore = PlayerScore.new()
+	new_record.autor = %WinPanel.author_name
+	new_record.celkovy_cas = celkovy_cas
+	new_record.pocet_pokusu = pocet_pokusu
+	top_ten_players.insert(new_score_index, new_record)
+	
 	%WinPanel.visible = false
+	%Leaderboard.visible = true
+	
 	save_values()
 	_nastav_min_napisy()
 
 func _on_finish() -> void:
-	if celkovy_cas < min_celkovy_cas:
-		min_celkovy_cas = celkovy_cas
-		min_pocet_pokusu = pocet_pokusu
-		%WinPanel.visible = true
-			
-	save_values()
-		
-	_nastav_min_napisy()
+	_is_finished = true
+	$LevelUI/TryAgainButton.visible = true
 	
+	for i in top_ten_players.size():
+		if celkovy_cas < top_ten_players[i].celkovy_cas:
+			new_score_index = i
+			%WinPanel.visible = true
+			return 
+			
+	if top_ten_players.size() < 10:
+		new_score_index = top_ten_players.size()
+		%WinPanel.visible = true
+		
 
 func _physics_process(delta: float) -> void:
-	celkovy_cas += delta
+	if not _is_finished:
+		celkovy_cas += delta
 	
 	%Cas.text = String.num(celkovy_cas, 0) + "s"
 	if character.global_position.y < -25.0:
@@ -93,8 +124,14 @@ func _input(_event: InputEvent) -> void:
 
 
 func _on_reset_button_pressed() -> void:
-	min_pocet_pokusu = 99999
-	min_celkovy_cas = 99999
-	autor_rekordu = ""
+	top_ten_players.clear()
 	save_values()
 	_nastav_min_napisy()
+
+
+func _on_hide_leaderboard_button_pressed() -> void:
+	%Leaderboard.visible = false
+
+
+func _on_try_again_button_pressed() -> void:
+	get_tree().reload_current_scene()
